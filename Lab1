@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+{
+
+float a=100, b=0.001, c;
+double  z=100, s=0.001, d;
+
+c=(pow((a+b),4)-(pow(a,4)+4*pow(a,3)*b))/(6*pow(a,2)*pow(b,2)+4*a*pow(b,3)+pow(b,4));
+printf("Float= %.10f\n", c);
+
+d=(pow((z+s),4)-(pow(z,4)+4*pow(z,3)*s))/(6*pow(z,2)*pow(s,2)+4*z*pow(s,3)+pow(s,4));
+printf("Doble= %.10f\n", d);
+}
