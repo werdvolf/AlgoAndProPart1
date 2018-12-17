@@ -1,58 +1,80 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-void print_arr();
-
+#include <stdio.h>
+#include <stdlib.h>
 int main()
 {
-    //r - стовпці //c - рядки
-    int r = 4,c =4;
-    int k;
-    do {
-    printf("In what position put a new column? -- ");
-    scanf("%d",&k);
-    }
-    while((k>c) || (k<0));
-    int arr; arr=(int)malloc(r*sizeof(int*)); for(int i=0; i<r; i++)
+	int n, m, k;
+	printf("Size of array\n");
+    printf("Put number  of columns:");
+    scanf("%d", &n);
+    printf("Put number of rows:");
+    scanf("%d", &m);
+    printf("Put k:");
+    scanf("%d", &k);
+
+    if((k>m)||(k<0))
     {
-        arr[i]=(int*)malloc(sizeof(int)*c); }
-    for(int i=0; i<r; i++) {
-        for(int j=0; j<c; j++) {
-            arr[i][j]=rand()%10; }
+        printf("Incorrect input");
     }
-    for(int i=0; i<r; i++) {
-        for(int j=0; j < c; j++) {
-            printf("%d",arr[i][j]);
-            }
-        printf("\n"); }printf("\n");
-//    print_arr( **arr, r, c);
-    
-    for(int i=0; i<r; i++) {
-        arr[i]=(int*)realloc(arr[i],sizeof(int)*(c+1)); }
-    for(int i=c+1; i>=k; i--) {
-        for(int j = 0; j<r; j++) {
-            arr[j][i]=arr[j][i-1]; }
-        
-    }
-    for(int j=0; j < c; j++)
+
+    int **mas;
+    mas = (int**)malloc(n*sizeof(int*));
+    for(int i = 0; i < n; i++)
     {
-        arr[j][k-1]=rand() % 10;
+        mas[i] = (int*)malloc(sizeof(int)*m);
     }
-    for(int i=0; i<r;i++) {
-        for(int j=0; j<c + 1; j++) {
-            printf("%d", arr[i][j]);
-            }
-        printf("\n"); }
-    for(int i=0; i<r+1;i++) {
-        free(arr[i]); }
-    free(arr);
-    return 0;
+
+    for(int i = 0; i<n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            mas[i][j] = rand()%10;
+        }
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            printf("%d", mas[i][j]);
+            printf("|");
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+
+    for(int i = 0; i < n; i++)
+    {
+        mas[i] = (int*)realloc(mas[i],sizeof(int)*(m+1));
+    }
+
+    for(int i = m+1; i >= k; i--)
+    {
+        for(int j = 0; j < n; j++)
+    {
+        mas[j][i] = mas[j][i-1];
+    }
+    }
+        for(int j = 0; j < m; j++)
+    {
+    mas[j][k-1] = rand()%10;
 }
 
-//void print_arr(int **arr, int r, int c ) {
-//    for (int i = 0; i < r; i++){
-//        for (int j = 0; j < c; j++){
-//            printf("%d", arr[i][j]);
-//        }
-//    }
-//}
+
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < m; j++)
+    {
+        printf("%d", mas[i][j]);
+        printf("|");
+    }
+    printf("\n");
+    }
+
+    for(int i = 0; i<n+1; i++)
+    {
+        free(mas[i]);
+    }
+    free(mas);
+    return 0;
+}
